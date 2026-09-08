@@ -17,6 +17,8 @@ class UserFactory extends Factory
      */
     protected static ?string $password;
 
+    protected static int $employeeCounter = 1;
+
     /**
      * Define the model's default state.
      *
@@ -30,6 +32,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'employee_id' => 'USR' . str_pad(static::$employeeCounter++, 4, '0'. STR_PAD_LEFT),
+            'role' => 'employee',
         ];
     }
 
